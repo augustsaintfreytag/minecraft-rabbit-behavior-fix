@@ -2,9 +2,7 @@ package net.saint.rabbit_behavior_fix.config;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = "rabbit_behavior_fix")
 public class RabbitBehaviorFixConfig implements ConfigData {
-
 }
