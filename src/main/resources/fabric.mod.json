@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "rabbit_behavior_fix",
+	"version": "${version}",
+
+	"name": "Rabbit Behavior Fix",
+	"description": "Fixes rabbits getting constantly stuck on one block high terrain.",
+	"authors": ["saint"],
+	"contact": {
+		"sources": "https://github.com/augustsaintfreytag/minecraft-rabbit-behavior-fix"
+	},
+
+	"license": "MIT",
+	"icon": "assets/rabbit_behavior_fix/icon.png",
+
+	"environment": "*",
+	"entrypoints": {
+		"main": ["net.saint.rabbit_behavior_fix.Mod"],
+		"client": ["net.saint.rabbit_behavior_fix.ClientMod"],
+		"modmenu": ["net.saint.rabbit_behavior_fix.ModMenuIntegration"]
+	},
+	"mixins": ["rabbit_behavior_fix.mixin.json"],
+
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"fabric": "*",
+		"minecraft": ">=1.20",
+		"java": ">=17"
+	}
+}
