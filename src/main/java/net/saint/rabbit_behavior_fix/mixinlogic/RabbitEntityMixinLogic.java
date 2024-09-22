@@ -3,7 +3,6 @@ package net.saint.rabbit_behavior_fix.mixinlogic;
 import org.joml.Math;
 
 import net.minecraft.entity.passive.RabbitEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public interface RabbitEntityMixinLogic {
@@ -45,33 +44,12 @@ public interface RabbitEntityMixinLogic {
 		float rabbitYaw = rabbit.getBodyYaw();
 		float radians = (float) Math.toRadians(rabbitYaw);
 		Vec3d direction = new Vec3d(-Math.sin(radians), 0, Math.cos(radians));
-		BlockPos rabbitBlockPos = rabbit.getBlockPos();
 
 		// Stuck Check
 
 		if (getTicksStuckInJumpLoop() > 5) {
 			setTicksStuckInJumpLoop(-25);
 			forceJump(rabbit, direction);
-			return;
-		}
-
-		// Stuck Block Check
-
-		BlockPos blockInFrontPos = rabbitBlockPos.add((int) direction.x, 0, (int) direction.z);
-		BlockPos blockBehindPos = rabbitBlockPos.add((int) -direction.x, 0, (int) -direction.z);
-		BlockPos blockLeftPos = rabbitBlockPos.add((int) -direction.z, 0, (int) direction.x);
-		BlockPos blockRightPos = rabbitBlockPos.add((int) direction.z, 0, (int) -direction.x);
-
-		boolean isBlockedInFront = world.getBlockState(blockInFrontPos).isOpaqueFullCube(world, blockInFrontPos);
-		boolean isBlockedBehind = world.getBlockState(blockBehindPos).isOpaqueFullCube(world, blockBehindPos);
-		boolean isBlockedLeft = world.getBlockState(blockLeftPos).isOpaqueFullCube(world, blockLeftPos);
-		boolean isBlockedRight = world.getBlockState(blockRightPos).isOpaqueFullCube(world, blockRightPos);
-
-		boolean isBlockedInAnyDirection = isBlockedInFront || isBlockedBehind || isBlockedLeft || isBlockedRight;
-
-		if (isBlockedInAnyDirection) {
-			forceJump(rabbit, direction);
-			return;
 		}
 	}
 
